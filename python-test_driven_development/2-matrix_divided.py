@@ -24,8 +24,18 @@ def matrix_divided(matrix, div):
     """
     msg = "matrix must be a matrix (list of lists) of integers/floats"
 
-    if not isinstance(matrix, list) or not matrix:
+    if not isinstance(matrix, list) or not matrix or len(matrix) == 0:
         raise TypeError(msg)
+
+    if not isinstance(div, (int, float)):
+        raise TypeError("div must be a number")
+
+    if div == 0:
+        raise ZeroDivisionError("division by zero")
+    
+    # div NaN-dırsa TypeError atırıq
+    if div != div:
+        raise TypeError("div must be a number")
 
     row_size = None
     for row in matrix:
@@ -40,11 +50,8 @@ def matrix_divided(matrix, div):
         for element in row:
             if not isinstance(element, (int, float)):
                 raise TypeError(msg)
-
-    if not isinstance(div, (int, float)):
-        raise TypeError("div must be a number")
-
-    if div == 0:
-        raise ZeroDivisionError("division by zero")
+            # Matrisin içində NaN və ya Inf varsa, TypeError atırıq
+            if element != element or element in [float('inf'), float('-inf')]:
+                raise TypeError(msg)
 
     return [[round(x / div, 2) for x in row] for row in matrix]
