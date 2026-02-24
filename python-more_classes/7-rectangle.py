@@ -58,10 +58,8 @@ class Rectangle:
         """Returns string representation of rectangle using print_symbol."""
         if self.__width == 0 or self.__height == 0:
             return ""
-        
         rect_str = []
         for i in range(self.__height):
-            # Buradakı self.print_symbol həm sinif, həm obyekt dəyərini tanıyır
             rect_str.append(str(self.print_symbol) * self.__width)
         return "\n".join(rect_str)
 
