@@ -11,30 +11,45 @@ Exception: area() is not implemented
 >>> bg.integer_validator("width", 89)
 
 >>> # integer_validator: Tip xətaları (TypeError)
+>>> # String
 >>> bg.integer_validator("name", "John")
 Traceback (most recent call last):
 TypeError: name must be an integer
 
->>> # Checker-in tələb etdiyi konkret tuple testi
+>>> # None (Checker-in son tələbi)
+>>> bg.integer_validator("age", None)
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+>>> # Set (Checker-in son tələbi)
+>>> bg.integer_validator("age", {3, 4})
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+>>> # Tuple
 >>> bg.integer_validator("age", (4,))
 Traceback (most recent call last):
 TypeError: age must be an integer
 
+>>> # List
 >>> bg.integer_validator("age", [1, 2, 3])
 Traceback (most recent call last):
 TypeError: age must be an integer
 
+>>> # Dictionary
+>>> bg.integer_validator("info", {"a": 1})
+Traceback (most recent call last):
+TypeError: info must be an integer
+
+>>> # Float
 >>> bg.integer_validator("weight", 5.5)
 Traceback (most recent call last):
 TypeError: weight must be an integer
 
+>>> # Boolean (Hətta True də int sayılmamalıdır)
 >>> bg.integer_validator("is_active", True)
 Traceback (most recent call last):
 TypeError: is_active must be an integer
-
->>> bg.integer_validator("info", {"a": 1})
-Traceback (most recent call last):
-TypeError: info must be an integer
 
 >>> # integer_validator: Dəyər xətaları (ValueError)
 >>> bg.integer_validator("age", 0)
@@ -45,7 +60,7 @@ ValueError: age must be greater than 0
 Traceback (most recent call last):
 ValueError: distance must be greater than 0
 
->>> # Arqumentlərin yoxlanılması
+>>> # Arqumentlərin sayının yoxlanılması
 >>> try:
 ...     bg.integer_validator("width")
 ... except TypeError as e:
