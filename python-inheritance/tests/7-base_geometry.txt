@@ -15,6 +15,11 @@ Exception: area() is not implemented
 Traceback (most recent call last):
 TypeError: name must be an integer
 
+>>> # Checker-in tələb etdiyi konkret tuple testi
+>>> bg.integer_validator("age", (4,))
+Traceback (most recent call last):
+TypeError: age must be an integer
+
 >>> bg.integer_validator("age", [1, 2, 3])
 Traceback (most recent call last):
 TypeError: age must be an integer
@@ -27,6 +32,10 @@ TypeError: weight must be an integer
 Traceback (most recent call last):
 TypeError: is_active must be an integer
 
+>>> bg.integer_validator("info", {"a": 1})
+Traceback (most recent call last):
+TypeError: info must be an integer
+
 >>> # integer_validator: Dəyər xətaları (ValueError)
 >>> bg.integer_validator("age", 0)
 Traceback (most recent call last):
@@ -36,7 +45,7 @@ ValueError: age must be greater than 0
 Traceback (most recent call last):
 ValueError: distance must be greater than 0
 
->>> # integer_validator: Arqument çatışmazlığı halları (Python daxili xətası)
+>>> # Arqumentlərin yoxlanılması
 >>> try:
 ...     bg.integer_validator("width")
 ... except TypeError as e:
