@@ -16,4 +16,3 @@ def class_to_json(obj):
         dict: Obyektin atributlarını saxlayan lüğət.
     """
     return obj.__dict__
-
