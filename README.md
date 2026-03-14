@@ -1,1 +1,1 @@
-Main Repository README
+SQL introduction project
