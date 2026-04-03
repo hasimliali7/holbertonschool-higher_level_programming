@@ -1,7 +1,6 @@
 import os
 
 def generate_invitations(template, attendees):
-    # Tip yoxlanışı
     if not isinstance(template, str):
         print("Error: template is not a string.")
         return
@@ -9,15 +8,13 @@ def generate_invitations(template, attendees):
         print("Error: attendees is not a list of dictionaries.")
         return
 
-    # Boş giriş yoxlanışı
-    if not template:
+    if not template.strip():
         print("Template is empty, no output files generated.")
         return
     if not attendees:
         print("No data provided, no output files generated.")
         return
 
-    # Hər bir iştirakçı üçün emal
     for i, attendee in enumerate(attendees, start=1):
         content = template
         for key in ["name", "event_title", "event_date", "event_location"]:
