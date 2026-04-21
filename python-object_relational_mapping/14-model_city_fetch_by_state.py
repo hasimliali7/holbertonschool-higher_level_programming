@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """
-Prints the State object with the name passed as argument
-from the database hbtn_0e_6_usa.
+Prints all City objects from the database hbtn_0e_14_usa.
 """
 import sys
 from model_state import Base, State
+from model_city import City
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -16,11 +16,11 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = session.query(State).filter(State.name == sys.argv[4]).first()
+    # Join edərək axtarırıq
+    results = session.query(City).join(State).filter(State.name == sys.argv[4])\
+                     .order_by(City.id).all()
 
-    if state:
-        print("{}".format(state.id))
-    else:
-        print("Not found")
+    for city in results:
+        print("{}".format(city.name))
 
     session.close()
